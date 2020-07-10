@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { dataServices } from '../../services/data.service'
 import Loading from "../../components/Loading/Loading";
+import './index.css'
 
-export default function Users (props){
+export default function Main() {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -11,7 +12,7 @@ export default function Users (props){
         const abortController = new AbortController()
         const signal = abortController.signal
 
-        dataServices.getUsers({signal})
+        dataServices.getUsers({ signal })
             .then(res => setUsers(res.data))
             .then(() => setLoading(false))
 
@@ -26,8 +27,12 @@ export default function Users (props){
                 ?
                 <Loading />
                 :
-                <div>
-                    {users.map(user => <Link to={`/user/${user.id}`} key={user.id}><div>{user.username}</div></Link>)}
+                <div className="users">
+                    {users.map(user =>
+                        <Link to={`/user/${ user.id }`} key={ user.id }>
+                            <div className="userName">{ user.username }</div>
+                        </Link>
+                    )}
                 </div>
             }
         </div>

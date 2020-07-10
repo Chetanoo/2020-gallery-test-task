@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+}
+.header a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+.headerItem {
+    padding: 1rem;
+    font-size: 2rem;
+}
+.Logo {
+    padding: 1rem;
+    font-size: 2rem;
+}
+.headerItem:hover {
+    transform: scale(1.1);
+    transition: .5s;
+}
+.headerContainer{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}

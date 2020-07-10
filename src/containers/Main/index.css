@@ -1,0 +1,13 @@
+.users a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+.userName {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin: 0.1rem;
+}
+.userName:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}

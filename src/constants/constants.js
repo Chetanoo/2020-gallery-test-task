@@ -1,3 +1,3 @@
 export const constants = {
-    API: 'https://jsonplaceholder.typicode.com/'
+    API: 'https://jsonplaceholder.typicode.com'
 }
