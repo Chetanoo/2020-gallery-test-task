@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dataServices } from '../../services/data.service'
-import Loading from "../../components/Loading/Loading";
+import Loading from '../../components/Loading/Loading'
+import LazyLoad from 'react-lazyload'
 import './index.css'
 
 export default function Album() {
@@ -55,14 +56,14 @@ export default function Album() {
             slideIndex = slides.length
         }
         for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+            slides[i].style.display = "none"
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-        captionText.innerHTML = dots[slideIndex-1].alt;
+        slides[slideIndex-1].style.display = "block"
+        dots[slideIndex-1].className += " active"
+        captionText.innerHTML = dots[slideIndex-1].alt
     }
 
     return(
@@ -75,9 +76,9 @@ export default function Album() {
                     <div className="backButton"><Link to={`/user/${ userId }`}>Back to albums</Link></div>
                     <div className="thumbnails">
                         {images.map((image, index) =>
-                            <div key={ image.id }>
+                            <LazyLoad key={ image.id }>
                                 <img className="hover-shadow" src={ image.thumbnailUrl } alt={ image.title } onClick={() => openModal(index + 1)}/>
-                            </div>
+                            </LazyLoad>
                         )}
                     </div>
                     <div id="myModal" className={ modalClasses.join(' ') }>
@@ -87,7 +88,9 @@ export default function Album() {
                             {images.map((image, index) =>
                                 <div className="mySlides" key={ image.id }>
                                     <div className="numbertext">{ index + 1 } / { images.length }</div>
-                                    <img className="slide" src={ image.url } style={ {width:'100%'} } alt={ image.title }/>
+                                    <LazyLoad>
+                                        <img className="slide" src={ image.url } style={ {width:'100%'} } alt={ image.title }/>
+                                    </LazyLoad>
                                 </div>
                             )}
 

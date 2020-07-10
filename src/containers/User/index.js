@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dataServices } from '../../services/data.service'
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../components/Loading/Loading"
 import './index.css'
-import UserAlbumItem from "../UserAlbumItem";
+import UserAlbumItem from '../UserAlbumItem'
 
 export default function User() {
     const [albums, setAlbums] = useState([])

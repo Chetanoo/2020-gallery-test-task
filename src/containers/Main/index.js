@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import { dataServices } from '../../services/data.service'
-import Loading from "../../components/Loading/Loading";
+import Loading from '../../components/Loading/Loading'
 import './index.css'
 
 export default function Main() {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom";
-import { dataServices } from "../../services/data.service";
-import Loading from "../../components/Loading/Loading";
+import { useParams } from "react-router-dom"
+import { dataServices } from "../../services/data.service"
+import Loading from "../../components/Loading/Loading"
+import LazyLoad from 'react-lazyload'
 import './index.css'
 
 export default function UserAlbumItem(props){
@@ -28,7 +29,9 @@ export default function UserAlbumItem(props){
                 <Loading />
                 :
                 <div>
-                    <img className="albumLogo" src={ album[0].thumbnailUrl } alt={ props.albumName }/>
+                    <LazyLoad>
+                        <img className="albumLogo" src={ album[0].thumbnailUrl } alt={ props.albumName }/>
+                    </LazyLoad>
                     <p className="text"><strong>{ props.albumName }</strong></p>
                     <p className="pageNumber">{ album.length } photos</p>
                 </div>
