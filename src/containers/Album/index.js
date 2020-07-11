@@ -88,9 +88,7 @@ export default function Album() {
                             {images.map((image, index) =>
                                 <div className="mySlides" key={ image.id }>
                                     <div className="numbertext">{ index + 1 } / { images.length }</div>
-                                    <LazyLoad>
-                                        <img className="slide" src={ image.url } style={ {width:'100%'} } alt={ image.title }/>
-                                    </LazyLoad>
+                                    <img className="slide" src={ image.url } style={ {width:'100%'} } alt={ image.title }/>
                                 </div>
                             )}
 
