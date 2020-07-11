@@ -1,26 +1,28 @@
+.headerContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
 .header {
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
     flex-direction: row;
+    padding: 1rem;
+    background: cornflowerblue;
+    flex-grow: 1;
 }
-.header a {
-    text-decoration: none;
-    color: cornflowerblue;
+nav {
+    display: flex;
 }
 .headerItem {
     padding: 1rem;
     font-size: 2rem;
 }
-.Logo {
-    padding: 1rem;
-    font-size: 2rem;
+.header a {
+    text-decoration: none;
+    color: #fefefe;
 }
-.headerItem:hover {
-    transform: scale(1.1);
-    transition: .5s;
-}
-.headerContainer{
-    width: 80%;
-    display: flex;
-    justify-content: center;
+.h:hover {
+        transform: scale(1.1);
+        transition: .5s;
 }

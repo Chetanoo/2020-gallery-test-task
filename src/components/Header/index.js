@@ -6,15 +6,17 @@ export default function Header() {
     return(
         <div className="headerContainer">
             <header className="header">
-                <div className="Logo">
+                <div className="headerItem">
                     <Link to="/"><strong>GalleryTestTask</strong></Link>
                 </div>
-                <div className="headerItem">
-                    <Link to="/">Home</Link>
-                </div>
-                <div className="headerItem">
-                    <Link to="/about">About</Link>
-                </div>
+                <nav>
+                    <div className="headerItem h">
+                        <Link to="/">Home</Link>
+                    </div>
+                    <div className="headerItem h">
+                        <Link to="/about">About</Link>
+                    </div>
+                </nav>
             </header>
         </div>
     )
