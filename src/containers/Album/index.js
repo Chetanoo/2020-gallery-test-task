@@ -4,13 +4,13 @@ import { dataServices } from '../../services/data.service'
 import Loading from '../../components/Loading/Loading'
 import LazyLoad from 'react-lazyload'
 import './index.css'
+import SimpleImageSlider from "react-simple-image-slider";
 
 export default function Album() {
     const [images, setImages] = useState([])
     const [loading, setLoading] = useState(true)
-    const [modalClasses, setModalClasses] = useState(['modal'])
+    const [showModal, setShowModal] = useState(false)
     const { userId, albumId } = useParams()
-    let slideIndex = 1
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -27,43 +27,8 @@ export default function Album() {
         }
     }, [albumId])
 
-    function openModal(n) {
-        setModalClasses(["modal", "activeModal"])
-        showSlides(slideIndex = n)
-    }
-
-    function closeModal() {
-        setModalClasses(["modal"])
-    }
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n)
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n)
-    }
-
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("demo");
-        let captionText = document.getElementById("caption");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none"
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block"
-        dots[slideIndex-1].className += " active"
-        captionText.innerHTML = dots[slideIndex-1].alt
+    function toggleModal(img) {
+        setShowModal(!showModal)
     }
 
     return(
@@ -77,40 +42,17 @@ export default function Album() {
                     <div className="thumbnails">
                         {images.map((image, index) =>
                             <LazyLoad key={ image.id }>
-                                <img className="hover-shadow" src={ image.thumbnailUrl } alt={ image.title } onClick={() => openModal(index + 1)}/>
+                                <img className="hover-shadow" src={ image.thumbnailUrl } alt={ image.title } onClick={() => toggleModal()}/>
                             </LazyLoad>
                         )}
                     </div>
-                    <div id="myModal" className={ modalClasses.join(' ') }>
-                        <span className="close cursor" onClick={() => closeModal()}>&times;</span>
-                        <div className="modal-content">
-
-                            {images.map((image, index) =>
-                                <div className="mySlides" key={ image.id }>
-                                    <div className="numbertext">{ index + 1 } / { images.length }</div>
-                                    <img className="slide" src={ image.url } style={ {width:'100%'} } alt={ image.title }/>
-                                </div>
-                            )}
-
-                            <div className="prev" onClick={() => plusSlides(-1)}>&#10094;</div>
-                            <div className="next" onClick={() => plusSlides(1)}>&#10095;</div>
-
-                            <div className="caption-container">
-                                <p id="caption">
-
-                                </p>
-                            </div>
-                            {images.map((image, index) =>
-                                <div className="column" key={ image.id }>
-                                    <img
-                                        className="demo"
-                                        src={ image.thumbnailUrl }
-                                        onClick={() => currentSlide(index + 1)}
-                                        alt={ image.title }
-                                    />
-                                </div>
-                            )}
-                        </div>
+                    <div className={showModal ? 'modal activeModal' : 'modal'}>
+                        <span className="close cursor" onClick={() => toggleModal()}>&times;</span>
+                        <SimpleImageSlider
+                            width={1000}
+                            height={700}
+                            images={images}
+                        />
                     </div>
                 </div>
             }
